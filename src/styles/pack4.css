@@ -1,0 +1,66 @@
+/* Modellpaket 2, Teil 3 – Zeichnungen (Präfix p4-) */
+.p4-display { fill: #1b1f24; stroke: #555; stroke-width: 2; }
+.p4-display-unit { font: 700 22px var(--ui); fill: #ff7a66; }
+.p4-display-cap { font: 700 12px var(--ui); fill: #aeb6bd; }
+.p4-road { fill: #5d6873; stroke: #333; }
+.p4-lane { fill: #e9eef2; }
+.p4-flash { fill: #ff3b3b; opacity: 0; pointer-events: none; }
+.p4-flash.on { animation: p4-blink .5s steps(2) infinite; }
+@keyframes p4-blink { 50% { opacity: .5; } }
+.p4-barrier { fill: #e9eef2; stroke: #333; stroke-width: 2; }
+.p4-barrier-stripe { fill: #d93636; }
+.p4-car { fill: #2a4fd6; stroke: #13277a; stroke-width: 2; }
+.p4-car-top { fill: #3b6fd9; stroke: #13277a; stroke-width: 2; }
+.p4-glass { fill: #cfe6f6; }
+.p4-wheel { fill: #222; stroke: #aaa; stroke-width: 2; }
+.p4-result { font: 800 18px var(--ui); fill: #1a1f24; }
+.p4-die { stroke: #333; stroke-width: 2; }
+.p4-sheet { fill: #f2c200; stroke: #6b5600; }
+.p4-sheet.broken { fill: #c94b4b; stroke: #6b1b1b; }
+.p4-pad { fill: #1b2f80; stroke: #0d1840; }
+.p4-wall { fill: #0f6a6a; stroke: #084040; }
+.p4-part { fill: #8fbcf0; stroke: #1b2f80; stroke-width: 1.5; }
+.p4-bin { fill: none; stroke: #333; stroke-width: 3; }
+.p4-bin-bg { fill: #fff; }
+.p4-beam { stroke: #d93636; stroke-width: 2; stroke-dasharray: 5 4; }
+.p4-beam.cut { stroke: #aaa; }
+.p4-belt { fill: #444; stroke: #222; }
+.p4-roller { fill: #8a949e; stroke: #222; stroke-width: 2; }
+.p4-crate { fill: #c8873b; stroke: #6b4413; stroke-width: 2; }
+.p4-crate-x { stroke: #6b4413; stroke-width: 2; }
+.p4-base { fill: #7a1f1f; stroke: #3d0f0f; stroke-width: 2; }
+.p4-slide { fill: #8a949e; stroke: #333; stroke-width: 1.5; }
+.p4-mark { fill: #ffe14d; }
+.m-bit.broken { stroke: #d93636; }
+.p4-gauge-bg { fill: #fbf3c9; stroke: #6b5600; stroke-width: 2; }
+.p4-scale { fill: none; stroke: #333; stroke-width: 1.5; }
+.p4-zone-low { fill: none; stroke: #e0a800; stroke-width: 5; }
+.p4-zone-high { fill: none; stroke: #d93636; stroke-width: 5; }
+.p4-needle { stroke: #111; stroke-width: 3; stroke-linecap: round; }
+.p4-hub { fill: #111; }
+.p4-vessel { fill: #f4f7fa; stroke: none; }
+.p4-vessel-line { fill: none; stroke: #333; stroke-width: 4; }
+.p4-liquid { fill: #7a3fb0; }
+.p4-coil { fill: none; stroke: #6b737b; stroke-width: 4; stroke-linejoin: round; }
+.p4-coil.on { stroke: #ff5a1f; filter: drop-shadow(0 0 5px #ff5a1f); }
+.p4-shaft { stroke: #555; stroke-width: 6; }
+.p4-blade { fill: #bbb; stroke: #333; stroke-width: 1.5; }
+.p4-steam { opacity: 0; }
+.p4-steam.on { opacity: 1; animation: p4-blink .6s steps(2) infinite; }
+.p4-steam-path { fill: none; stroke: #9aa5b0; stroke-width: 3; stroke-linecap: round; }
+.p4-silo { fill: none; stroke: #333; stroke-width: 3; stroke-linejoin: round; }
+.p4-product { fill: #e8a33d; }
+.p4-bottle { fill: #cfe6f6; stroke: #2b3440; stroke-width: 2; }
+.p4-spoke { stroke: #222; stroke-width: 2; }
+.p4-crate2 { fill: #c8873b; stroke: #6b4413; stroke-width: 2; fill-opacity: .6; }
+.p4-title { font: 800 18px var(--ui); fill: #1a1f24; }
+.p4-key { cursor: pointer; }
+.p4-key-face { fill: #f4f4f0; stroke: #333; stroke-width: 2; }
+.p4-key.on .p4-key-face { fill: #ffd27a; stroke-width: 3; }
+.p4-key-num { font: 700 30px var(--ui); fill: #1a1f24; }
+.p4-seg { fill: #4a4a4a; }
+.p4-seg.on { fill: #ff2a2a; filter: drop-shadow(0 0 6px #ff2a2a); }
+.p4-tag { fill: #f4f4f0; stroke: #888; }
+.p4-tag-name { font: 800 14px var(--ui); fill: #1a1f24; }
+.p4-tag-io { font: 700 10px var(--mono); fill: #1f7a2a; }
+.p4-tag-line { stroke: #888; }

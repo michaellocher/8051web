@@ -1,0 +1,79 @@
+/* Bauteilebibliothek – Erweiterung 1 (Aufzüge, Tore, Prozesse, Plotter). Klassen mit Präfix b1- */
+.b1-scene { fill: #eef2f5; stroke: #7d8893; stroke-width: 1; }
+.b1-scene.dark { fill: #2a323a; }
+.b1-txt { font: 700 9px var(--mono); fill: #1d2630; pointer-events: none; }
+.b1-txt.b1-small { font-size: 7.5px; }
+.b1-txt.b1-big { font-size: 15px; }
+.b1-txt.b1-wire { fill: var(--wire); }
+.b1-txt.b1-bad { fill: #d42a2f; }
+.b1-shaft { fill: #cfd6dc; stroke: #6a7580; stroke-width: 1; }
+.b1-landing { stroke: #4b5560; stroke-width: 2; }
+.b1-cable { stroke: #333; stroke-width: 1.2; }
+.b1-cabin { fill: #5f8fbf; stroke: #25405c; stroke-width: 1.5; }
+.b1-cabin.inside { fill: #fff6c9; }
+.b1-door-panel { fill: #9aa7b3; stroke: #4b5560; stroke-width: 1; }
+.b1-pulley { fill: #8a949e; stroke: #333; }
+.b1-lamp { --lit: 0; fill: color-mix(in oklab, #ffd23c calc(var(--lit) * 100%), #6b6244); stroke: #0006; }
+.b1-wall { fill: #d9c9a8; stroke: #8b7a58; stroke-width: 1; }
+.b1-opening { fill: #3b4350; }
+.b1-opening.lit { fill: #f3e7a6; }
+.b1-gdoor { fill: #5d7fa6; stroke: #2c4560; stroke-width: 1; }
+.b1-gdoor-ribs { stroke: #2c4560; stroke-width: 0.8; opacity: .7; }
+.b1-beam { stroke: #2fbf5b; stroke-width: 1.5; stroke-dasharray: 3 2; }
+.b1-beam.broken { stroke: #d42a2f; }
+.b1-post { fill: #555; }
+.b1-car-body { fill: #d9382f; stroke: #5a1511; stroke-width: .8; }
+.b1-car.blue .b1-car-body { fill: #2f6fd0; stroke: #12305e; }
+.b1-car.green .b1-car-body { fill: #2f9a55; stroke: #124d28; }
+.b1-wheel { fill: #222; }
+.b1-car.clickable { cursor: pointer; }
+.b1-asphalt { fill: #6b7178; }
+.b1-lane { stroke: #e8e8e8; stroke-width: 1; stroke-dasharray: 5 4; }
+.b1-arm { stroke: #d42a2f; stroke-width: 5; stroke-linecap: butt; }
+.b1-arm-stripes { stroke: #fff; stroke-width: 5; stroke-dasharray: 5 5; }
+.b1-building { fill: #b7bfc7; stroke: #6a7580; stroke-width: 1; }
+.b1-sign { fill: #1a4fa0; stroke: #0b2a5c; }
+.b1-pipe { fill: none; stroke: #7b8794; stroke-width: 5; stroke-linejoin: round; }
+.b1-flow { fill: none; stroke: #8fd0ff; stroke-width: 2.4; stroke-dasharray: 4 5; opacity: 0; }
+.b1-flow.on { opacity: 1; animation: b1-flow 0.5s linear infinite; }
+@keyframes b1-flow { to { stroke-dashoffset: -9; } }
+.b1-valve path { fill: #d42a2f; stroke: #222; stroke-width: 1; }
+.b1-valve.open path { fill: #1fbf62; }
+.b1-tank { fill: none; stroke: #3b4650; stroke-width: 2; }
+.b1-tank-bg { fill: #fff; }
+.b1-water { fill: #4a9be8; }
+.b1-liquid1 { fill: #2f7fd8; }
+.b1-liquid2 { fill: #e6c229; }
+.b1-liquid-mix { fill: #3fae6a; }
+.b1-mark { stroke: #555; stroke-width: 1; stroke-dasharray: 2 2; }
+.b1-spin.on { animation: b1-spin 0.45s linear infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes b1-spin { to { transform: rotate(360deg); } }
+.b1-stirrer { fill: #6a7580; stroke: #222; stroke-width: 1; }
+.b1-heater { fill: none; stroke: #7a5a3a; stroke-width: 2.2; }
+.b1-heater.on { stroke: #ff4d2a; filter: drop-shadow(0 0 3px #ff4d2a); }
+.b1-bubble { fill: #fff; opacity: .0; }
+.b1-boil .b1-bubble { opacity: .8; animation: b1-rise 0.8s linear infinite; }
+@keyframes b1-rise { from { transform: translateY(4px); } to { transform: translateY(-14px); } }
+.b1-fault rect { fill: #d42a2f; }
+.b1-fault .b1-fault-txt { fill: #fff; font-size: 8px; }
+.b1-choice { cursor: pointer; }
+.b1-choice rect { fill: #d9dee3; stroke: #4b5560; stroke-width: 1; }
+.b1-choice rect.sel { fill: #12a35a; }
+.b1-choice text { fill: #111; }
+.b1-ruler-cell.light { fill: #fff; }
+.b1-ruler-cell.dark { fill: #1a1f24; }
+.b1-ruler-frame { fill: none; stroke: #4b5560; stroke-width: 1; }
+.b1-head { fill: #d42a2f; fill-opacity: .25; stroke: #d42a2f; stroke-width: 1.2; cursor: ew-resize; }
+.b1-eye { fill: #d42a2f; stroke: #fff; stroke-width: .8; }
+.b1-strip { cursor: ew-resize; touch-action: none; }
+.b1-paper { fill: #fffef6; stroke: #7d8893; stroke-width: 1; }
+.b1-trace { fill: none; stroke: #1a2a5c; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+.b1-trace.red { stroke: #d42a2f; }
+.b1-rail { stroke: #6a7580; stroke-width: 2.4; }
+.b1-motor { fill: #8a949e; stroke: #333; stroke-width: 1; }
+.b1-pen { fill: #fff; stroke: #1a2a5c; stroke-width: 1.5; }
+.b1-pen.down { fill: #1a2a5c; }
+.b1-pen.down.red { fill: #d42a2f; stroke: #d42a2f; }
+@media (prefers-reduced-motion: reduce) {
+  .b1-flow.on, .b1-spin.on, .b1-boil .b1-bubble { animation: none; }
+}

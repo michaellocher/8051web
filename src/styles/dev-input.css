@@ -1,0 +1,14 @@
+/* Ein-Port-Geräte „Schalter, Tasten …" und „LED, Anzeigen …" (Klassen mit Präfix b2-) */
+.b2-gray-bg { fill: #fff; }
+.b2-warn { fill: #c00; }
+.b2-fk-field { fill: #bdbdbd; stroke: #222; stroke-width: 1.2; }
+.b2-fk-hub { fill: #fff; stroke: #222; stroke-width: 1.2; }
+.b2-fk-field + .dev-led { stroke: #000; }
+/* Farben-Tasten: farbige Tasten mit „?" wie im Handbuch */
+.dev-btn.b2-fk-red rect { fill: #e5262b; stroke: #222; stroke-width: 1.5; }
+.dev-btn.b2-fk-green rect { fill: #17d13f; stroke: #222; stroke-width: 1.5; }
+.dev-btn.b2-fk-yellow rect { fill: #ffe100; stroke: #222; stroke-width: 1.5; }
+.dev-btn.b2-fk-blue rect { fill: #2457e6; stroke: #222; stroke-width: 1.5; }
+.dev-btn.b2-fk text { display: block; font: 800 18px var(--mono); fill: #111; }
+.dev-btn.b2-fk.down rect { filter: brightness(.72); transform: none; }
+.b2-nsow-ch { font: 800 38px var(--ui); fill: #ffcc00; }

@@ -1,0 +1,53 @@
+/* Bauteilebibliothek – Erweiterung 2 (Klassen mit Präfix b2-) */
+.dev-led.b2-blue { --c: #4a8bff; }
+.b2-sel rect { fill: #d9dee3; stroke: #4b5560; stroke-width: 1.2; }
+.b2-sel text { font: 700 9.5px var(--ui); }
+.b2-sel.active rect { fill: #1d4ed8; stroke: #0b2a87; }
+.b2-sel.active text { fill: #fff; }
+
+/* Gray-Scheibe */
+.b2-disc-bg { fill: #e9edf0; stroke: #222; stroke-width: 1.5; }
+.b2-disc-on { fill: #111; stroke: #111; stroke-width: .4; }
+.b2-needle, .b2-arm { stroke: #e11; stroke-width: 2.2; stroke-linecap: round; }
+.b2-arm { stroke: #f08a00; stroke-width: 4; }
+.b2-needle-hub { fill: #e11; stroke: #700; }
+.b2-arm-hub { fill: #f08a00; stroke: #7a4500; }
+.b2-grab { cursor: grab; }
+.b2-grab:active { cursor: grabbing; }
+
+/* Farbsensor */
+.b2-sensor { fill: #fff; stroke: #222; stroke-width: 1.3; }
+.b2-fld { stroke: #222; stroke-width: 1; cursor: pointer; }
+.b2-fld-none { fill: #b8bec4; }
+.b2-fld-red { fill: #e5262b; }
+.b2-fld-blue { fill: #2457d6; }
+.b2-fld-black { fill: #141414; }
+
+/* Farbtasten */
+.b2-fk rect { stroke-width: 2; }
+.b2-fk-red rect { fill: #7d1316; stroke: #e5262b; }
+.b2-fk-green rect { fill: #0f5a2c; stroke: #22c35f; }
+.b2-fk-blue rect { fill: #14337f; stroke: #4a8bff; }
+.b2-fk-yellow rect { fill: #776200; stroke: #ffcc00; }
+.b2-fk.down rect { filter: brightness(1.4); transform: none; }
+.b2-fk text { display: none; }
+
+/* Kompass */
+.b2-compass { fill: #1d2430; stroke: #0b0f16; stroke-width: 2; }
+.b2-compass-in { fill: #0b0f16; }
+.b2-lamp-txt { font: 800 11px var(--mono); fill: #000; pointer-events: none; }
+.b2-big { font: 800 26px var(--mono); fill: #ffcc00; }
+
+/* IC-Tester */
+.b2-ic { fill: #1b1b1f; stroke: #000; stroke-width: 1.2; }
+.b2-ic-notch { fill: #3a3a42; stroke: none; }
+.b2-pin { fill: #b9bec4; stroke: #555; stroke-width: .8; }
+.b2-ic-txt { font: 800 12px var(--mono); fill: #f2f2f2; }
+.b2-ic-txt2 { font: 700 10px var(--mono); fill: #ffcc00; }
+
+/* Tastatur */
+.b2-kb-display { fill: #0f1a12; stroke: #000; }
+.b2-kb-txt { font: 700 10px var(--mono); fill: #5cff8a; }
+.b2-kb-key text { font: 700 10px var(--mono); }
+.b2-chip-txt { font: 700 10px var(--mono); fill: #111; }
+.b2-road-txt { font: 700 9px var(--mono); fill: #f1f1f1; }

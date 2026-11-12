@@ -1,0 +1,95 @@
+/* Sonstige Modelle (Ampeln, Würfel, Aufzüge, Garage, Parkhaus, Schrittmotor, Behälter, Prozess, Plotter, Codelineal). Präfix dm- */
+.dm-grass { fill: #4fbf3a; stroke: #2c7a20; }
+.dm-sky { fill: #fff; stroke: #888; }
+.dm-sunny { fill: #ffe600; stroke: #b3a100; }
+.dm-teal { fill: #0a7f86; stroke: #06555a; }
+.dm-process { fill: #35d6e8; stroke: #1b8794; }
+.dm-panel-grey { fill: #c3c3c3; stroke: #777; }
+.dm-wall { fill: #bdbdbd; stroke: #777; }
+.dm-pip-tag { font: 700 8px var(--mono); fill: #ffe14d; pointer-events: none; }
+.dm-chip-txt { font: 700 9px var(--mono); fill: #111; }
+.dm-tag, .dm-tag-big, .dm-red-tag, .dm-yellow-tag, .dm-tiny2 { font: 800 8.5px var(--mono); fill: #111; pointer-events: none; }
+.dm-tag-big { font-size: 12px; }
+.dm-red-tag { fill: #e5262b; font-size: 10px; }
+.dm-yellow-tag { fill: #ffe14d; font-size: 11px; }
+.dm-tiny2 { font-size: 7px; }
+.dm-loop { fill: #444; stroke: #bbb; stroke-dasharray: 3 2; cursor: default; }
+.dm-loop.on { fill: #ffcc00; stroke: #000; }
+/* Schiebeschalter */
+.dm-slide { cursor: pointer; }
+.dm-slide-on { fill: #8b8b8b; stroke: #000; }
+.dm-slide-on.lit { fill: #ff1a1a; }
+.dm-slide-off { fill: #8b8b8b; stroke: #000; }
+.dm-slide-knob { fill: #d4d0c8; stroke: #222; }
+/* Schrittmotor */
+.dm-yoke { fill: #7a7f85; stroke: #333; stroke-width: 1; }
+.dm-rotor-rim { fill: #f5e04a; stroke: #222; stroke-width: 1.2; }
+.dm-rotor-n { fill: #22c35f; stroke: #222; stroke-width: .6; }
+.dm-rotor-s { fill: #ff1f1f; stroke: #222; stroke-width: .6; }
+.dm-rotor-w { fill: #fff; stroke: #222; stroke-width: .6; }
+.dm-rotor-q { font: 800 40px var(--mono); fill: #111; pointer-events: none; }
+/* Aufzug-1 */
+.dm-rail { stroke: #111; stroke-width: 1.2; }
+.dm-joint { fill: #2d4cff; stroke: #111; }
+.dm-table { fill: #8b1a1a; stroke: #222; stroke-width: .6; }
+.dm-motor { fill: #fff; stroke: #111; stroke-width: 1.2; }
+.dm-hang { stroke: #111; stroke-width: 1; }
+.dm-crate { fill: #1d2fa8; stroke: #111; stroke-width: .8; }
+.dm-load.r { fill: #d42a2f; } .dm-load.g { fill: #1f8f3a; } .dm-load.d { fill: #7a1f2a; }
+.dm-panel { fill: #c8c8c8; stroke: #555; }
+/* Aufzug-2 */
+.dm-floor { fill: #1a2fbf; stroke: #111; }
+.dm-shaft { fill: #26e0f0; stroke: #111; }
+.dm-cabin { fill: #26e0f0; stroke: #111; stroke-width: 1; }
+.dm-head { fill: #f2b48a; stroke: #7a4a2a; stroke-width: .6; }
+.dm-body.red { fill: #e0262c; } .dm-body.violet { fill: #d63fd0; } .dm-body.green { fill: #2cc06a; }
+.dm-lampbox { fill: #1a2fbf; stroke: #111; }
+.dm-lamp { --lit: 0; fill: color-mix(in oklab, #2de35c calc(var(--lit) * 100%), #0b6a22); stroke: #111; stroke-width: 1.5; }
+.dm-lamp-txt { font: 800 13px var(--mono); fill: #000; pointer-events: none; }
+/* Garage */
+.dm-drive { fill: #c4c4c4; }
+.dm-garage-wall { fill: #8a8a8a; stroke: #555; }
+.dm-roof { fill: #d4252a; }
+.dm-opening { fill: #0f1650; }
+.dm-gdoor { fill: #2a37e8; stroke: #1b2490; }
+.dm-gdoor-ribs { stroke: #1b2490; stroke-width: .8; opacity: .7; }
+.dm-bush { fill: #1fc01f; stroke: #137a13; }
+.dm-warn rect { fill: #d42a2f; }
+.dm-warn-txt { font: 800 9px var(--ui); fill: #fff; }
+/* Parkhaus */
+.dm-psign { fill: #0b1a8f; stroke: #fff; stroke-width: 1.5; }
+.dm-psign-txt { font: 800 22px var(--ui); fill: #fff; pointer-events: none; }
+.dm-count { fill: #fff; stroke: #111; }
+.dm-count-txt { font: 800 18px var(--mono); fill: #111; pointer-events: none; }
+.dm-asphalt { fill: #6f6f6f; }
+.dm-lane { fill: #bdbdbd; stroke: #888; }
+.dm-lane-txt { font: 700 9px var(--mono); fill: #555; }
+.dm-arrow { stroke: #fff; stroke-width: 2.4; fill: none; stroke-linecap: round; }
+.dm-box { fill: #ffe14d; stroke: #333; }
+.dm-arm { stroke: #d42a2f; stroke-width: 4; stroke-linecap: butt; }
+.dm-arm-stripes { stroke: #fff; stroke-width: 4; stroke-dasharray: 5 5; }
+/* Behälter / Prozess */
+.dm-dot { fill: #111; }
+.dm-vent { fill: none; stroke: #111; stroke-width: 1.6; }
+/* Codelineal */
+.dm-bit { fill: #111; stroke: #000; }
+.dm-bit.on { fill: #ffe14d; }
+.dm-eq { font: 800 18px var(--mono); fill: #111; }
+.dm-mode-r { fill: #ff1a1a; }
+.dm-mode-b { fill: #1a35ff; }
+.dm-mode-txt-r { font: 800 17px var(--mono); fill: #ff1a1a; }
+.dm-mode-txt-b { font: 800 14px var(--mono); fill: #1a35ff; }
+.dm-track { fill: #2b3cb0; }
+.dm-cell { fill: #111; }
+.dm-cell.w { fill: #fff; }
+.dm-scale { fill: #7d7d7d; }
+.dm-scale-txt { font: 700 6.5px var(--mono); fill: #fff; }
+.dm-slide-head { fill: #444; }
+.dm-red-line { stroke: #ff1a1a; stroke-width: 3; }
+.dm-eye { fill: #ff1a1a; stroke: #fff; stroke-width: .6; }
+/* Plotter */
+.dm-guide { stroke: #111; stroke-width: 1; }
+.dm-axis { fill: #7d7d7d; stroke: #333; }
+.dm-axis-txt { font: 800 9px var(--ui); fill: #fff; }
+.dm-pen { stroke-width: 1.4; }
+.dm-roadtxt { font: 700 8px var(--mono); fill: #f1f1f1; pointer-events: none; }

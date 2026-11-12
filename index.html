@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Simulationsprogramm für Mikrocontroller der 8051-Familie – im Browser." />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>8051webXL – 8051-Simulator</title>
+    <script>
+      try {
+        const t = JSON.parse(localStorage.getItem("8051web:v1") ?? "{}").theme;
+        if (t) document.documentElement.dataset.theme = t;
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <div class="app" data-app data-mode="int">
+      <header class="toolbar" role="toolbar" aria-label="Werkzeugleiste">
+        <div class="brand" title="8051webXL – Neuauflage von 8051winXL">
+          <span class="brand-chip">8051</span><span class="brand-name">web<small>XL</small></span>
+        </div>
+        <div class="tb-group tb-original" aria-label="Werkzeuge wie im Original">
+          <button class="tb" data-action="open" title="HEX-Datei laden (Strg+O)"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v1H7.5a2 2 0 0 0-1.9 1.4L3 19z M3 19l2.6-7.6A2 2 0 0 1 7.5 10H22l-2.7 7.7a2 2 0 0 1-1.9 1.3z"></path></svg><span>Öffnen</span></button>
+          <button class="tb" data-action="autoload" title="Programm ablegen: AutoLade – geänderte HEX-Datei beim Zurückkehren automatisch neu laden"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11 M7 10l5 5 5-5 M5 20h14"></path></svg></button>
+          <button class="tb" data-action="options" title="Optionen einstellen (Oberfläche, C-Head, Animation, Geschwindigkeit)"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"></path></svg></button>
+          <button class="tb tb-red" data-action="encrypt" title="Datei verschlüsseln"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14 M5 12h14"></path></svg></button>
+          <button class="tb tb-red" data-action="decrypt" title="Datei entschlüsseln"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path></svg></button>
+          <button class="tb" data-action="password" title="Codepasswort anzeigen / erzeugen"><b class="tb-pw">PW</b></button>
+          <button class="tb" data-action="asmview" title="ASM-Datei anzeigen (Quelltext zum aktuellen Programm)"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 18a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15z M21 21l-5.2-5.2 M7.5 9h6 M7.5 12h4"></path></svg></button>
+          <button class="tb" data-action="target" title="HEX-Datei ins Zielsystem übertragen"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h10v8H4z M7 16h4 M9 12v4 M17 9h4 M19 7l2 2-2 2 M14 20h7 M18 17l3 3-3 3"></path></svg></button>
+          <button class="tb" data-action="print" title="Bildschirm drucken"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9V4h10v5 M6 18H4v-7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7h-2 M7 14h10v6H7z"></path></svg></button>
+          <button class="tb" data-action="copyshot" title="Bildschirm kopieren: Ausschnitt in die Zwischenablage"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h11v11H8z M5 16H4V4h12v1 M12 11v5 M10 14l2 2 2-2"></path></svg></button>
+          <button class="tb" data-action="help" title="Hilfe holen (F1)"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6 M12 17.2v.1"></path></svg></button>
+          <button class="tb" data-action="arrange" title="Fenster ordnen"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18v16H3z M3 9h18 M9 9v11"></path></svg></button>
+          <button class="tb" data-action="www" title="Simsoft-Homepage öffnen"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M3 12h18 M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9 M12 3C9.5 5.6 8.2 8.6 8.2 12s1.3 6.4 3.8 9"></path></svg></button>
+          <button class="tb" data-action="about" title="Programm-Information"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M12 11v6 M12 7.5v.1"></path></svg></button>
+          <button class="tb bye" data-action="bye" title="Programm beenden">BYE</button>
+        </div>
+        <div class="tb-group mode-switch" role="radiogroup" aria-label="Oberfläche">
+          <button class="seg" data-mode-btn="int" role="radio" title="Controller mit internem ROM und RAM (z. B. AT89C8252)">int. ROM/RAM</button>
+          <button class="seg" data-mode-btn="ext" role="radio" title="Controller mit externem ROM und RAM (z. B. 80C535)">ext. ROM/RAM</button>
+          <button class="seg" data-mode-btn="model" role="radio" title="Vereinfachter Modell-Rechner mit reduziertem Befehlssatz">Modell-Rechner</button>
+        </div>
+        <div class="tb-spacer"></div>
+        <div class="tb-group tb-extras" aria-label="Ergänzungen der Web-Ausgabe">
+          <button class="tb" data-action="examples" title="Beispielprogramme" popovertarget="examples-menu"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h7v7H4z M13 4h7v7h-7z M4 13h7v7H4z M13 13h7v7h-7z"></path></svg><span>Beispiele</span></button>
+          <button class="tb" data-action="editor" title="Assembler-Editor (Strg+E)"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z M7.5 9.5l2.5 2.5-2.5 2.5 M12 15h4.5"></path></svg><span>Editor</span></button>
+          <button class="tb" data-action="assemble" title="Quelltext assemblieren und laden (Strg+B)"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4.5v15l12-7.5z"></path></svg><span>Assemblieren</span></button>
+          <button class="tb" data-action="save" title="Programm als Intel-HEX speichern (Strg+S)"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12 M7 10l5 5 5-5 M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"></path></svg><span>HEX</span></button>
+          <button class="tb" data-action="hexview" title="Intel-HEX-Datei anzeigen"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z M7 9h2 M11 9h2 M15 9h2 M7 12h2 M11 12h2 M15 12h2 M7 15h2 M11 15h2"></path></svg></button>
+          <button class="tb" data-action="terminal" title="Serielle Schnittstelle (Terminal)"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18v14H3z M7 9l3 3-3 3 M12 15h5"></path></svg></button>
+          <button class="tb" data-action="printlisting" title="Code-Listing drucken"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z M9 11h7 M9 15h7 M9 7h3"></path></svg></button>
+          <button class="tb" data-action="theme" title="Hell/Dunkel umschalten"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"></path></svg></button>
+        </div>
+        <div id="examples-menu" class="menu" popover>
+          <div class="menu-title">Beispielprogramme</div>
+          <div class="menu-list" data-examples></div>
+        </div>
+      
+      </header>
+      <main class="workspace">
+        <section class="panel cpu" data-show="int ext" style="grid-area: cpu">
+          <h2>CPU</h2>
+          <div class="body">
+            <div class="reg-row">
+              <label class="rf">
+                A
+                <output class="reg" data-sfr="E0" data-edit>00</output>
+              </label>
+              <label class="rf">
+                B
+                <output class="reg" data-sfr="F0" data-edit>00</output>
+              </label>
+              <label class="rf">
+                DPTR
+                <output class="reg w4" data-bind="dptr" data-edit="dptr">0000</output>
+              </label>
+              <label class="rf">
+                SP
+                <output class="reg" data-sfr="81" data-edit>07</output>
+              </label>
+              <label class="rf">
+                PC
+                <output class="reg w4" data-bind="pc" data-edit="pc">0000</output>
+              </label>
+            </div>
+            <div class="psw-row">
+              <label class="rf">
+                PSW
+                <output class="reg" data-sfr="D0" data-edit>00</output>
+              </label>
+              <span class="arrow">→</span>
+              <div
+                class="bits"
+                data-bits="D0"
+                data-names="CY,AC,F0,RS1,RS0,OV,F1,P"
+                data-readonly="P"
+                data-titles="Carry (Übertrag),Hilfs-Übertrag (Auxiliary Carry),Flag 0 (frei),Registerbank-Auswahl 1,Registerbank-Auswahl 0,Überlauf (Overflow),Flag 1 (frei),Parität des Akkus"
+              ></div>
+            </div>
+            <div class="bank-row">
+              <span class="bank-label">Bank</span>
+              <output class="reg" data-bind="bank">0</output>
+              <span class="hint">
+                Register R0–R7 ab Adresse <output data-bind="bankaddr">00</output>h
+              </span>
+            </div>
+          </div>
+        </section>
+        <section class="panel tci" data-show="int ext" style="grid-area: tci">
+          <h2>Timer · Counter · Interrupt</h2>
+          <div class="body tci-body">
+            <div class="tci-block">
+              <div class="tci-head">
+                TMOD
+                <output class="reg" data-sfr="89" data-edit>00</output>
+              </div>
+              <div
+                class="bits small"
+                data-bits="89"
+                data-names="GATE,C/T,M1,M0,GATE,C/T,M1,M0"
+                data-groups="T1,T0"
+                data-titles="T1: Gate (Freigabe über INT1),T1: Counter/Timer,T1: Mode Bit 1,T1: Mode Bit 0,T0: Gate (Freigabe über INT0),T0: Counter/Timer,T0: Mode Bit 1,T0: Mode Bit 0"
+              ></div>
+            </div>
+            <div class="tci-block timers">
+              <div class="timer">
+                <span class="tn">T0</span>
+                <output class="reg" data-sfr="8C" data-edit title="TH0">00</output>
+                <output class="reg" data-sfr="8A" data-edit title="TL0">00</output>
+                <span class="tmode" data-bind="t0mode">Mode 0</span>
+              </div>
+              <div class="timer">
+                <span class="tn">T1</span>
+                <output class="reg" data-sfr="8D" data-edit title="TH1">00</output>
+                <output class="reg" data-sfr="8B" data-edit title="TL1">00</output>
+                <span class="tmode" data-bind="t1mode">Mode 0</span>
+              </div>
+            </div>
+            <div class="tci-block">
+              <div class="tci-head">
+                TCON
+                <output class="reg" data-sfr="88" data-edit>00</output>
+              </div>
+              <div
+                class="bits small"
+                data-bits="88"
+                data-names="TF1,TR1,TF0,TR0,IE1,IT1,IE0,IT0"
+                data-titles="Timer 1 Überlauf-Flag,Timer 1 Start,Timer 0 Überlauf-Flag,Timer 0 Start,INT1 Flag,INT1 flankengesteuert,INT0 Flag,INT0 flankengesteuert"
+              ></div>
+            </div>
+            <div class="tci-block">
+              <div class="tci-head">
+                IE
+                <output class="reg" data-sfr="A8" data-edit>00</output>
+              </div>
+              <div
+                class="bits small"
+                data-bits="A8"
+                data-names="EA,–,–,ES,ET1,EX1,ET0,EX0"
+                data-titles="Alle Interrupts freigeben,,,Serieller Interrupt,Timer 1 Interrupt,INT1 Interrupt,Timer 0 Interrupt,INT0 Interrupt"
+              ></div>
+            </div>
+            <div class="tci-block">
+              <div class="tci-head">
+                IP
+                <output class="reg" data-sfr="B8" data-edit>00</output>
+              </div>
+              <div
+                class="bits small"
+                data-bits="B8"
+                data-names="–,–,–,PS,PT1,PX1,PT0,PX0"
+                data-titles=",,,Priorität seriell,Priorität Timer 1,Priorität INT1,Priorität Timer 0,Priorität INT0"
+              ></div>
+            </div>
+            <div class="tci-block">
+              <div class="tci-head">
+                SCON
+                <output class="reg" data-sfr="98" data-edit>00</output>
+                <span class="sbuf">
+                  SBUF
+                  <output class="reg" data-bind="sbuf">00</output>
+                </span>
+              </div>
+              <div
+                class="bits small"
+                data-bits="98"
+                data-names="SM0,SM1,SM2,REN,TB8,RB8,TI,RI"
+                data-titles="Serieller Mode Bit 0,Serieller Mode Bit 1,Multiprozessor,Empfang freigeben,Sende-Bit 8,Empfangs-Bit 8,Sende-Interrupt-Flag,Empfangs-Interrupt-Flag"
+              ></div>
+            </div>
+            <div class="p3-block">
+              <div class="p3-head">
+                P3
+                <output class="reg" data-bind="p3pin" title="Pegel an P3">FF</output>
+              </div>
+              <div class="p3-inputs">
+                <button class="p3in toggle" data-p3="5" title="T1-Eingang (P3.5) umschalten">
+                  <span>P3.5</span>
+                  T1
+                </button>
+                <button class="p3in toggle" data-p3="4" title="T0-Eingang (P3.4) umschalten">
+                  <span>P3.4</span>
+                  T0
+                </button>
+                <button class="p3in push" data-p3="3" title="INT1 (P3.3): gedrückt = Low. Umschalt-Klick rastet ein.">
+                  <span>P3.3</span>
+                  INT1
+                </button>
+                <button class="p3in push" data-p3="2" title="INT0 (P3.2): gedrückt = Low. Umschalt-Klick rastet ein.">
+                  <span>P3.2</span>
+                  INT0
+                </button>
+              </div>
+              <button class="mini irq-reset" data-action="irq-reset" title="Interrupt- und Timer-Register auf Defaultwerte zurücksetzen">RESET</button>
+            </div>
+          </div>
+        </section>
+        <section class="panel adr" data-show="int" style="grid-area: adr">
+          <h2>Adr.-Buffer</h2>
+          <div class="body center">
+            <div class="caption">
+              Programm-
+              <br />
+              Adress-
+              <br />
+              Register
+            </div>
+            <label class="rf adr-field">
+              Adr.
+              <output class="reg w4 red" data-bind="busaddr" data-flow="adr">0000</output>
+            </label>
+          </div>
+        </section>
+        <section class="panel adr" data-show="ext" style="grid-area: adr">
+          <h2>Adr.-Latch</h2>
+          <div class="body latch">
+            <label class="rf">
+              ALE
+              <output class="reg sig" data-bind="ale">0</output>
+            </label>
+            <div class="latch-row">
+              <label class="rf">
+                P0
+                <output class="reg" data-bind="buslo">00</output>
+              </label>
+              <span class="arrow">→</span>
+              <div class="latch-chip" title="Adress-Latch (z. B. 74HC573), übernimmt bei ALE">
+                <span>LE</span>
+                <output data-bind="buslo2">00</output>
+              </div>
+            </div>
+            <label class="rf adr-field">
+              Adr.
+              <output class="reg w4 red" data-bind="busaddr" data-flow="adr">0000</output>
+            </label>
+            <label class="rf">
+              P2
+              <output class="reg" data-bind="bushi">00</output>
+            </label>
+          </div>
+        </section>
+        <section class="panel ramsfr" data-show="int ext" style="grid-area: ramsfr">
+          <h2>int. RAM / SFR</h2>
+          <div class="body">
+            <div class="rn-grid">
+              <div class="rn">
+                <span class="rn-name">R0</span>
+                <output class="reg" data-bind="r0" data-edit="r0" data-flow="r0">00</output>
+                <span class="rn-addr" data-bind="r0addr">00</span>
+              </div>
+              <div class="rn">
+                <span class="rn-name">R1</span>
+                <output class="reg" data-bind="r1" data-edit="r1" data-flow="r1">00</output>
+                <span class="rn-addr" data-bind="r1addr">01</span>
+              </div>
+              <div class="rn">
+                <span class="rn-name">R2</span>
+                <output class="reg" data-bind="r2" data-edit="r2" data-flow="r2">00</output>
+                <span class="rn-addr" data-bind="r2addr">02</span>
+              </div>
+              <div class="rn">
+                <span class="rn-name">R3</span>
+                <output class="reg" data-bind="r3" data-edit="r3" data-flow="r3">00</output>
+                <span class="rn-addr" data-bind="r3addr">03</span>
+              </div>
+              <div class="rn">
+                <span class="rn-name">R4</span>
+                <output class="reg" data-bind="r4" data-edit="r4" data-flow="r4">00</output>
+                <span class="rn-addr" data-bind="r4addr">04</span>
+              </div>
+              <div class="rn">
+                <span class="rn-name">R5</span>
+                <output class="reg" data-bind="r5" data-edit="r5" data-flow="r5">00</output>
+                <span class="rn-addr" data-bind="r5addr">05</span>
+              </div>
+              <div class="rn">
+                <span class="rn-name">R6</span>
+                <output class="reg" data-bind="r6" data-edit="r6" data-flow="r6">00</output>
+                <span class="rn-addr" data-bind="r6addr">06</span>
+              </div>
+              <div class="rn">
+                <span class="rn-name">R7</span>
+                <output class="reg" data-bind="r7" data-edit="r7" data-flow="r7">00</output>
+                <span class="rn-addr" data-bind="r7addr">07</span>
+              </div>
+            </div>
+            <div class="memwin-btns"><button class="mini" data-action="memwin-iram" title="interne RAM-Daten in eigenem Fenster">? int. RAM</button><button class="mini" data-action="memwin-sfr" title="interne SFR-Daten in eigenem Fenster">SFR ?</button></div>
+              <div class="lookup">
+              <div class="lk-row">
+                <span class="lk-label" title="Beliebige Adresse im internen RAM (00–FFh) ansehen und ändern">int. RAM</span>
+                <span class="lk-adr">Adr</span>
+                <input class="reg-input" name="lookup-iram" id="lookup-iram" data-lookup="iram" value="30" maxlength="2" spellcheck="false" aria-label="RAM-Adresse" />
+                <span class="arrow">→</span>
+                <output class="reg" data-bind="lk-iram" data-edit="lk-iram">00</output>
+              </div>
+              <div class="lk-row">
+                <span class="lk-label">SFR</span>
+                <select class="sfr-select" name="lookup-sfr" id="lookup-sfr" data-lookup="sfr" aria-label="SFR auswählen"></select>
+                <span class="arrow">→</span>
+                <output class="reg" data-bind="lk-sfr" data-edit="lk-sfr">00</output>
+              </div>
+              <div class="stack">
+                <span class="lk-label">Stack</span>
+                <div class="stack-list" data-stack></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel alu" data-show="int ext" style="grid-area: alu">
+          <div class="body alu-body">
+            <div class="alu-box">
+              <svg class="alu-shape" viewBox="0 0 140 70" data-flow="alu" aria-hidden="true">
+                <path d="M2 4 h56 l12 16 l12 -16 h56 l-30 62 h-76 z"></path>
+              </svg>
+              <span class="alu-label">ALU</span>
+              <output class="alu-op" data-bind="alu">–</output>
+            </div>
+            <div class="control">
+              <div class="ctl-title">Control</div>
+              <div class="sig-row">
+                <span>ALE</span>
+                <i class="sig-led" data-sig="ale"></i>
+              </div>
+              <div class="sig-row">
+                <span class="ovl">WR</span>
+                <i class="sig-led" data-sig="wr"></i>
+              </div>
+              <div class="sig-row">
+                <span class="ovl">RD</span>
+                <i class="sig-led" data-sig="rd"></i>
+              </div>
+              <div class="sig-row">
+                <span class="ovl">PSEN</span>
+                <i class="sig-led" data-sig="psen"></i>
+              </div>
+            </div>
+            <div class="decoder">
+              <div class="dec-title">Decoder</div>
+              <div class="dec-row">
+                <span>IR</span>
+                <output class="reg" data-bind="ir" data-flow="ir">00</output>
+                <span class="arrow">→</span>
+                <output class="dec-text" data-bind="decoded">&nbsp;</output>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel ports" data-show="int ext" style="grid-area: ports">
+          <h2>I/O-Ports</h2>
+          <div class="body ports-body" data-ports></div>
+        </section>
+        <section class="panel mcpu" data-show="model" style="grid-area: mcpu">
+          <h2>CPU</h2>
+          <div class="body mcpu-body">
+            <fieldset class="mgroup regs">
+              <legend>Register</legend>
+              <label class="rf">
+                A
+                <output class="reg" data-sfr="E0" data-edit>00</output>
+              </label>
+              <label class="rf">
+                B
+                <output class="reg" data-sfr="F0" data-edit>00</output>
+              </label>
+              <label class="rf">
+                R0
+                <output class="reg" data-bind="r0" data-edit="r0" data-flow="r0">00</output>
+              </label>
+              <label class="rf">
+                R1
+                <output class="reg" data-bind="r1" data-edit="r1" data-flow="r1">00</output>
+              </label>
+            </fieldset>
+            <fieldset class="mgroup">
+              <legend>Programmzähler</legend>
+              <label class="rf">
+                PC
+                <output class="reg w4" data-bind="pc" data-edit="pc">0000</output>
+              </label>
+              <div class="sublegend">Datenzeiger</div>
+              <label class="rf">
+                DPTR
+                <output class="reg w4" data-bind="dptr" data-edit="dptr">0000</output>
+              </label>
+            </fieldset>
+            <fieldset class="mgroup">
+              <legend>Puffer</legend>
+              <label class="rf">
+                Adressen-Puffer
+                <output class="reg w4 red" data-bind="busaddr" data-flow="adr">0000</output>
+              </label>
+              <label class="rf">
+                Daten-Puffer
+                <output class="reg blue" data-bind="databuf">00</output>
+              </label>
+            </fieldset>
+            <fieldset class="mgroup flags">
+              <legend>Flags</legend>
+              <div
+                class="bits"
+                data-bits="D0"
+                data-names="CY,AC,–,–,–,OV,–,P"
+                data-readonly="P"
+                data-hide="2,3,4,6"
+                data-titles="Übertrag (Carry),Hilfs-Übertrag,,,,Überlauf,,Parität"
+              ></div>
+            </fieldset>
+            <fieldset class="mgroup steuer">
+              <legend>Steuerwerk</legend>
+              <div class="sig-row">
+                <span class="ovl">RD</span>
+                <i class="sig-led" data-sig="rd"></i>
+              </div>
+              <div class="sig-row">
+                <span class="ovl">WR</span>
+                <i class="sig-led" data-sig="wr"></i>
+              </div>
+              <div class="sig-row">
+                <span class="ovl">PSEN</span>
+                <i class="sig-led" data-sig="psen"></i>
+              </div>
+            </fieldset>
+            <div class="mbtns">
+              <button class="mini" data-action="memwin-iram">int. RAM</button>
+              <button class="mini" data-action="memwin-sfr">int. SFR</button>
+            </div>
+            <fieldset class="mgroup decoder">
+              <legend>Befehls-Decoder</legend>
+              <div class="dec-row">
+                <span>IR</span>
+                <output class="reg" data-bind="ir" data-flow="ir">00</output>
+                <span class="arrow">→</span>
+                <output class="dec-text" data-bind="decoded">&nbsp;</output>
+              </div>
+            </fieldset>
+            <div class="m-alu-io">
+              <div class="alu-box small">
+                <div class="cap">Rechenwerk</div>
+                <svg class="alu-shape" viewBox="0 0 140 70" data-flow="alu" aria-hidden="true">
+                  <path d="M2 4 h56 l12 16 l12 -16 h56 l-30 62 h-76 z"></path>
+                </svg>
+                <span class="alu-label">ALU</span>
+                <output class="alu-op" data-bind="alu">–</output>
+              </div>
+              <div class="m-io">
+                <div class="cap">Ein-Ausgabe</div>
+                <div class="m-port">PORT-0</div>
+                <div class="m-port">PORT-1</div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel bus" data-show="model" style="grid-area: bus">
+          <h2>Bussystem</h2>
+          <div class="bus-lines" aria-hidden="true">
+            <div class="busline addr" data-bus="addr"><span>Adressbus</span></div>
+            <div class="busline data" data-bus="data"><span>Datenbus</span></div>
+            <div class="busline ctrl" data-bus="ctrl"><span>Steuerbus</span></div>
+          </div>
+          <div class="m-ports">
+            <h3>I/O-Ports</h3>
+            <div class="ports-body" data-ports-model></div>
+          </div>
+        </section>
+        <section class="panel mem" style="grid-area: mem">
+          <div class="mem-part ram">
+            <div class="mem-head">
+              <span class="sig-tag">
+                RD
+                <i class="sig-led" data-sig="rd"></i>
+              </span>
+              <span class="sig-tag">
+                WR
+                <i class="sig-led" data-sig="wr"></i>
+              </span>
+              <h2 data-bind="ramtitle">
+                int. RAM
+                <small>(EEPROM)</small>
+              </h2>
+            </div>
+            <div class="hex-head">
+              <span class="ha">Adr.</span>
+              <span>+0</span>
+              <span>+1</span>
+              <span>+2</span>
+              <span>+3</span>
+              <span>+4</span>
+              <span>+5</span>
+              <span>+6</span>
+              <span>+7</span>
+              <span class="ascii">ASCII</span>
+            </div>
+            <div class="hexview" data-hexview="ram" tabindex="0" aria-label="Datenspeicher"></div>
+          </div>
+          <div class="mem-part rom">
+            <div class="mem-head">
+              <span class="sig-tag">
+                PSEN
+                <i class="sig-led" data-sig="psen"></i>
+              </span>
+              <h2 data-bind="romtitle">
+                int. ROM
+                <small>(FLASH)</small>
+              </h2>
+            </div>
+            <div class="hex-head">
+              <span class="ha">Adr.</span>
+              <span>+0</span>
+              <span>+1</span>
+              <span>+2</span>
+              <span>+3</span>
+              <span>+4</span>
+              <span>+5</span>
+              <span>+6</span>
+              <span>+7</span>
+              <span class="ascii">ASCII</span>
+            </div>
+            <div class="hexview" data-hexview="rom" tabindex="0" aria-label="Programmspeicher"></div>
+          </div>
+        </section>
+      </main>
+      <div class="bottom">
+        <section class="panel code" style="grid-area: code">
+          <div class="code-head">
+            <h2>Code</h2>
+            <span class="code-file" data-bind="file">–</span>
+            <label class="code-opt">
+              <input type="checkbox" name="asmcol" id="asmcol" data-opt="asmcol" checked />
+              Assembler-Spalte
+            </label>
+            <button class="mini" data-action="follow" title="Zur aktuellen Befehlszeile springen">PC ↧</button>
+          </div>
+          <div class="code-cols" aria-hidden="true">
+            <span class="c-bp"></span>
+            <span class="c-adr">Adr</span>
+            <span class="c-hex">HEX</span>
+            <span class="c-mn">Mnemonic</span>
+            <span class="c-asm">Assembler</span>
+            <span class="c-b">B</span>
+            <span class="c-z">Z</span>
+            <span class="c-desc">Beschreibung</span>
+          </div>
+          <div class="codeview" data-codeview tabindex="0" aria-label="Disassemblierter Code"></div>
+        </section>
+        <section class="panel controls" style="grid-area: ctl" aria-label="Bedienung">
+          <button class="ctl-btn phase" data-action="phase" title="Befehl zyklusweise bearbeiten: holen → decodieren → ausführen (F7)">
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M4 12h11 M11 7l5 5-5 5 M19 5v14"></path>
+            </svg>
+            <span data-bind="phaselabel">Befehl holen</span>
+          </button>
+          <div class="diamond" title="Simulationsgeschwindigkeit für RUN">
+            <button class="dia-up" data-action="faster" aria-label="Schneller">▲</button>
+            <div class="dia-mid">
+              <span>Bedienung</span>
+              <output data-bind="speed">5 Bef./s</output>
+            </div>
+            <button class="dia-down" data-action="slower" aria-label="Langsamer">▼</button>
+          </div>
+          <button class="ctl-btn" data-action="reset" title="RESET (F2)">
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M4 12a8 8 0 1 0 2.4-5.7 M4 4v4.5h4.5"></path>
+            </svg>
+            <span>RESET</span>
+          </button>
+          <button class="ctl-btn" data-action="turbo" title="Turbo-Run in Echtzeit (F6)">
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 5v14l8-7z M12 5v14l8-7z"></path>
+            </svg>
+            <span data-bind="turbolabel">Turbo-Run</span>
+          </button>
+          <button class="ctl-btn" data-action="run" title="RUN mit einstellbarer Geschwindigkeit (F5)">
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M7 4.5v15l12-7.5z"></path>
+            </svg>
+            <span data-bind="runlabel">RUN</span>
+          </button>
+          <button class="ctl-btn" data-action="step" title="Einen Befehl ausführen (F8)">
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M6 4.5v15l9-7.5z M18 5v14"></path>
+            </svg>
+            <span>STEP</span>
+          </button>
+        </section>
+      </div>
+      <footer class="statusbar" role="status">
+        <span class="st-msg" data-bind="message">Bereit.</span>
+        <span class="st-file" data-bind="file2">–</span>
+        <span class="st-bytes" data-bind="bytes">B=0</span>
+        <span class="st-cycles" data-bind="cycles" title="Maschinenzyklen und simulierte Zeit">0 Zyklen</span>
+        <span class="st-clock" data-bind="clock" title="Taktfrequenz">12 MHz</span>
+      </footer>
+    </div>
+    <!-- Geräteauswahl -->
+    <dialog class="dlg device-dlg" data-dialog="devices" closedby="any">
+      <header>
+        <h2>
+          Bauteilebibliothek –
+          <span data-bind="devport">Port</span>
+        </h2>
+        <button class="x" data-close aria-label="Schließen">✕</button>
+      </header>
+      <div class="dlg-body">
+        <p class="muted">Wähle ein Gerät für diesen Port. 2-Port-Modelle belegen beide Ports einer Spalte.</p>
+        <div class="device-grid" data-device-grid></div>
+      </div>
+    </dialog>
+    <!-- Assembler-Editor -->
+    <dialog class="dlg editor-dlg" data-dialog="editor" closedby="closerequest">
+      <header>
+        <h2>Assembler-Editor</h2>
+        <span class="muted" data-bind="editorfile"></span>
+        <div class="dlg-actions">
+          <button class="btn" data-action="ed-new">Neu</button>
+          <button class="btn" data-action="ed-save">.asm speichern</button>
+          <button class="btn primary" data-action="ed-assemble" title="Strg+Enter">Assemblieren &amp; Laden</button>
+          <button class="x" data-close aria-label="Schließen">✕</button>
+        </div>
+      </header>
+      <div class="editor-wrap">
+        <div class="gutter" data-gutter aria-hidden="true"></div>
+        <textarea
+          name="source"
+          id="source"
+          class="editor"
+          data-editor
+          spellcheck="false"
+          autocomplete="off"
+          autocapitalize="off"
+          wrap="off"
+          aria-label="Assembler-Quelltext"
+        ></textarea>
+      </div>
+      <footer class="editor-foot"><div class="diag" data-diag></div></footer>
+    </dialog>
+    <!-- HEX-Ansicht -->
+    <dialog class="dlg hex-dlg" data-dialog="hexview" closedby="any">
+      <header>
+        <h2>Intel-HEX</h2>
+        <button class="x" data-close aria-label="Schließen">✕</button>
+      </header>
+      <div class="dlg-body"><pre class="hexfile" data-hexfile></pre></div>
+    </dialog>
+    <!-- Terminal -->
+    <dialog class="dlg term-dlg" data-dialog="terminal">
+      <header>
+        <h2>Serielle Schnittstelle</h2>
+        <button class="btn" data-action="term-clear">Leeren</button>
+        <button class="x" data-close aria-label="Schließen">✕</button>
+      </header>
+      <div class="dlg-body">
+        <pre class="term" data-term tabindex="0" aria-label="Terminal – Tastatureingaben werden an RXD gesendet"></pre>
+        <p class="muted">Klicke ins Terminal und tippe – jedes Zeichen landet im Empfangspuffer (SBUF, RI).</p>
+      </div>
+    </dialog>
+    <!-- Hilfe -->
+    <dialog class="dlg help-dlg" data-dialog="help" closedby="any">
+      <header>
+        <h2>Hilfe</h2>
+        <button class="x" data-close aria-label="Schließen">✕</button>
+      </header>
+      <div class="dlg-body prose">
+        <h3>Werkzeugleiste (wie im Original)</h3>
+          <table class="help-tools">
+            <tr><td>Öffnen</td><td>HEX-Datei laden (auch .hexpw, .asm/.a51; ziehen ins Fenster geht auch)</td></tr>
+            <tr><td>↓</td><td>Programm ablegen / <b>AutoLade</b>: Wird die Datei z. B. von Keil neu assembliert, lädt 8051webXL sie beim Zurückkehren automatisch neu (Piep)</td></tr>
+            <tr><td>✓</td><td>Optionen: Oberfläche, Sprung über C-Head, Stop nach jeder Animation, Geschwindigkeit</td></tr>
+            <tr><td class="tb-red">+ / −</td><td>Datei verschlüsseln / entschlüsseln (Lehrer- und Schülermodus)</td></tr>
+            <tr><td class="tb-red">PW</td><td>Codepasswort der Datei einige Sekunden in der Titelleiste anzeigen</td></tr>
+            <tr><td>ASM</td><td>Zugehörige ASM- oder C-Datei anzeigen, die aktuelle Zeile ist markiert</td></tr>
+            <tr><td>HEX</td><td>Programm ins Zielsystem übertragen (serielle Schnittstelle, Startbefehl)</td></tr>
+            <tr><td>Drucken / Kopieren</td><td>Bildschirm drucken bzw. Ausschnitt in die Zwischenablage kopieren</td></tr>
+            <tr><td>Fenster ordnen</td><td>Modell-, Speicher- und ASM-Fenster an ihre Standardposition</td></tr>
+            <tr><td>BYE</td><td>Programm beenden</td></tr>
+          </table>
+          <h3>Lehrer- und Schülermodus</h3>
+          <p>Mit „+“ verschlüsselt die Lehrkraft HEX- und ASM- bzw. C-Datei mit einem Codepasswort (ohne Sonderzeichen erzeugbar). Schülerinnen und Schüler können die verschlüsselte Datei öffnen und simulieren, sehen den Code aber erst, wenn sie mit „−“ das Codepasswort eingeben.</p>
+          <h3>Haltepunkte und Interrupts</h3>
+          <p>Bis zu 50 Haltepunkte per Klick auf die Adresse im Code-Fenster (rot markiert); Rechtsklick → „alle Breakpoints löschen“. INT0/INT1 und T0/T1 werden im Feld P3 ausgelöst, „RESET“ daneben setzt die Interrupt-Register zurück. „? int. RAM“ und „SFR ?“ öffnen die Speicherfenster; ein Klick darauf zeigt die Namen.</p>
+          <h3>Programm laden</h3>
+        <p>
+          <b>Öffnen</b>
+          lädt eine Intel-HEX-Datei (von einem beliebigen Assembler) oder einen Assembler-Quelltext (
+          <code>.asm</code>
+          ,
+          <code>.a51</code>
+          ). Dateien können auch einfach ins Fenster gezogen werden. Mit
+          <b>ASM</b>
+          öffnest du den eingebauten Editor,
+          <b>Prüfen</b>
+          assembliert und lädt den Quelltext.
+        </p>
+        <h3>Ausführen</h3>
+        <ul>
+          <li>
+            <b>Befehl holen</b>
+            (F7) – bearbeitet den Befehl zyklusweise:
+            <i>holen → decodieren → Operanden holen → ausführen</i>
+            . Die Datentransporte im Controller werden grafisch dargestellt.
+          </li>
+          <li>
+            <b>STEP</b>
+            (F8) – führt einen ganzen Befehl aus.
+          </li>
+          <li>
+            <b>RUN</b>
+            (F5) – läuft mit der eingestellten Geschwindigkeit (▲/▼ bzw. + / −).
+          </li>
+          <li>
+            <b>Turbo-Run</b>
+            (F6) – läuft in Echtzeit mit der eingestellten Taktfrequenz.
+          </li>
+          <li>
+            <b>RESET</b>
+            (F2) – setzt den Controller zurück.
+            <kbd>Esc</kbd>
+            hält an.
+          </li>
+          <li>
+            Klick auf eine Adresse im Code-Fenster setzt einen
+            <b>Haltepunkt</b>
+            .
+          </li>
+        </ul>
+        <h3>Werte ändern</h3>
+        <p>
+          Register, Speicherzellen und Bits lassen sich direkt bearbeiten: Feld anklicken, Hex-Wert eingeben,
+          <kbd>Enter</kbd>
+          . Bits wechseln per Klick.
+        </p>
+        <h3>Ports und Geräte</h3>
+        <p>
+          Über
+          <b>I/O</b>
+          neben jedem Port schließt du ein Gerät aus der Bauteilebibliothek an.
+          <b>REG</b>
+          zeigt das Port-Latch,
+          <b>PIN</b>
+          den tatsächlichen Pegel (Latch UND externe Beschaltung – wie beim echten, quasi-bidirektionalen 8051-Port). Ein Pin kann nur als
+          Eingang arbeiten, wenn im Latch eine 1 steht.
+        </p>
+        <h3>Oberflächen</h3>
+        <ul>
+          <li>
+            <b>int. ROM/RAM</b>
+            – Controller mit internem Programm- und Datenspeicher, Ports P0, P1, P2, P4.
+          </li>
+          <li>
+            <b>ext. ROM/RAM</b>
+            – P0 ist gemultiplexter Adress-/Datenbus, P2 liefert das High-Byte der Adresse. Freie Ports: P1, P4, P5. Der rechte Speicher
+            zeigt den externen RAM (MOVX).
+          </li>
+          <li>
+            <b>Modell-Rechner</b>
+            – vereinfachte Darstellung mit Bussystem und reduziertem Befehlssatz (nur A, B, R0, R1, DPTR; keine Interrupts).
+          </li>
+        </ul>
+        <h3>Externe Modelle</h3>
+          <p>Unter <b>I/O</b> → „Externe Modelle“ stehen Anlagen aus der Steuerungstechnik bereit (z. B. Bohrvorrichtung, Sortieranlage, Garagentor). Sie belegen zwei Ports: <b>P0 → Ax.0–7</b> (Aktoren, 1 = an) und <b>Ex.0–7 → P1</b> (Sensoren und Taster, 1 = betätigt). „Modell öffnen“ zeigt die Anlage in einem eigenen, verschiebbaren Fenster mit Ein-/Ausgangsanzeige; „?“ zeigt die Belegung, „↺“ setzt die Anlage zurück.</p>
+          <h3>Passwortschutz (PW)</h3>
+          <p>Speichert das Programm als verschlüsselte Datei (<code>.hexpw</code>). Beim Öffnen ohne Passwort läuft das Programm, Code-Fenster und Programmspeicher bleiben aber verborgen („verschlüsselt“), sofern beim Speichern erlaubt. Mit dem Passwort wird das Programm „entschlüsselt“.</p>
+          <h3>Zielsystem</h3>
+          <p>Überträgt das Programm als Intel-HEX über einen USB-Seriell-Adapter an den Bootloader eines echten 8051-Boards (Chrome/Edge, Web Serial).</p>
+          <h3>Direktlinks</h3>
+          <p><code>?example=01-lauflicht</code> in der Adresszeile lädt ein Beispiel samt Geräten, ideal zum Verteilen im Unterricht.</p>
+          <h3>Assembler-Syntax</h3>
+        <p>
+          Intel/Keil-kompatibel:
+          <code>Label:</code>
+          ,
+          <code>ORG</code>
+          ,
+          <code>DB</code>
+          ,
+          <code>DW</code>
+          ,
+          <code>DS</code>
+          ,
+          <code>EQU</code>
+          ,
+          <code>BIT</code>
+          ,
+          <code>DATA</code>
+          ,
+          <code>END</code>
+          ; Zahlen
+          <code>0Fh</code>
+          ,
+          <code>0x0F</code>
+          ,
+          <code>1010b</code>
+          ,
+          <code>'A'</code>
+          ; Ausdrücke mit
+          <code>+ - * / HIGH LOW</code>
+          ; Bits wie
+          <code>P1.0</code>
+          oder
+          <code>ACC.7</code>
+          .
+          <code>JMP</code>
+          /
+          <code>CALL</code>
+          werden zu
+          <code>LJMP</code>
+          /
+          <code>LCALL</code>
+          .
+        </p>
+      </div>
+    </dialog>
+    <!-- Info -->
+    <dialog class="dlg about-dlg" data-dialog="about" closedby="any">
+      <header>
+        <h2>Info</h2>
+        <button class="x" data-close aria-label="Schließen">✕</button>
+      </header>
+      <div class="dlg-body prose">
+        <p class="about-logo">
+          <span class="brand-chip">8051</span>
+          <span class="brand-name">web<small>XL</small></span>
+        </p>
+        <p>
+          Simulationsprogramm für Mikrocontroller der 8051-Familie – eine Neuauflage des Schul-Klassikers
+          <b>8051winXL</b>
+          von SimSoft (simsoft.de) für den Browser.
+        </p>
+        <p>
+          Läuft vollständig lokal im Browser, ohne Installation und ohne Server. Programme, Gerätebelegung und Einstellungen werden im
+          Browser gespeichert.
+        </p>
+        <p class="muted">
+          Simulierter Kern: 8051 mit vollständigem Befehlssatz, Timer 0/1 (Mode 0–3), 5 Interruptquellen mit 2 Prioritätsebenen, serieller
+          Schnittstelle sowie Ports P0–P5.
+        </p>
+      </div>
+    </dialog>
+    <!-- Optionen (wie im Original) -->
+    <dialog class="dlg opt-dlg" data-dialog="options" closedby="any">
+      <header><h2>Optionen</h2><button class="x" data-close aria-label="Schließen">✕</button></header>
+      <div class="dlg-body">
+        <form class="pw-form" data-form="options">
+          <fieldset class="opt-modes">
+            <legend>Oberfläche</legend>
+            <label class="check"><input type="radio" name="opt-mode" value="model" /> Modell-Rechner</label>
+            <label class="check"><input type="radio" name="opt-mode" value="ext" /> ext. ROM/RAM</label>
+            <label class="check"><input type="radio" name="opt-mode" value="int" /> int. ROM/RAM</label>
+          </fieldset>
+          <label class="check"><input type="checkbox" name="opt-chead" id="opt-chead" /> Sprung über C-Head <span class="muted">(Initialisierungscode von C-Programmen nach RESET überspringen)</span></label>
+          <label class="check"><input type="checkbox" name="opt-stopanim" id="opt-stopanim" /> Stop nach jeder Animation <span class="muted">(nächster Schritt per Taste oder Mausklick)</span></label>
+          <label>Geschwindigkeit
+            <span class="opt-speed"><span class="muted">niedrig</span><input type="range" name="opt-speed" id="opt-speed" min="0" max="10" step="1" /><span class="muted">hoch</span></span>
+            <output class="muted" data-bind="speed2"></output>
+          </label>
+          <button class="btn primary" type="submit">OK</button>
+        </form>
+      </div>
+    </dialog>
+
+    <!-- Quelltext-Anzeige (ASM-Datei anzeigen) -->
+    <section class="ext-window src-window" data-window="asm" hidden aria-label="ASM-Datei">
+      <header class="ext-head"><span class="ext-title" data-bind="srctitle">ASM-Datei</span><button class="ext-btn" data-x="close" aria-label="Schließen">✕</button></header>
+      <pre class="src-view" data-srcview></pre>
+    </section>
+
+    <!-- Interner Speicher (int. RAM / SFR) -->
+    <section class="ext-window mem-window" data-window="iram" hidden aria-label="Interner RAM">
+      <header class="ext-head"><span class="ext-title" data-memtitle>interne RAM-Daten</span><button class="ext-btn" data-x="close" aria-label="Schließen">✕</button></header>
+      <pre class="mem-view" data-memview="iram" title="Klick: Daten ↔ Namen"></pre>
+    </section>
+    <section class="ext-window mem-window" data-window="sfr" hidden aria-label="SFR">
+      <header class="ext-head"><span class="ext-title" data-memtitle>interne SFR-Daten</span><button class="ext-btn" data-x="close" aria-label="Schließen">✕</button></header>
+      <pre class="mem-view" data-memview="sfr" title="Klick: Daten ↔ Namen"></pre>
+    </section>
+
+    <!-- Bildschirm kopieren: Ausschnitt wählen -->
+    <div class="shot-overlay" data-shot hidden><canvas data-shot-canvas></canvas><div class="shot-rect" data-shot-rect hidden></div><p class="shot-hint">Ausschnitt mit gedrückter Maustaste aufziehen – Esc bricht ab</p></div>
+
+    <!-- Passwortschutz -->
+    <dialog class="dlg pw-dlg" data-dialog="password" closedby="any">
+      <header><h2>Passwortschutz</h2><button class="x" data-close aria-label="Schließen">✕</button></header>
+      <div class="dlg-body">
+        <section class="pw-unlock" data-pw-unlock>
+          <h3>Programm entschlüsseln</h3>
+          <p class="muted">Das geladene Programm ist verschlüsselt. Mit dem Passwort werden Code-Fenster und Programmspeicher sichtbar.</p>
+          <form class="pw-form" data-form="unlock">
+            <label>Passwort <input type="password" name="pw-unlock" id="pw-unlock" autocomplete="current-password" required /></label>
+            <button class="btn primary" type="submit">Entschlüsseln</button>
+            <label class="check"><input type="checkbox" name="pw-savedec" id="pw-savedec" /> entschlüsselte Dateien zusätzlich speichern (.hex / .a51)</label>
+          </form>
+        </section>
+        <section data-pw-lock>
+          <h3>Verschlüsselt speichern</h3>
+          <p class="muted">Speichert das aktuelle Programm als verschlüsselte HEX-Datei (<code>.hexpw</code>, AES-256-GCM). Ideal für Lösungsdateien: Schülerinnen und Schüler können das Programm ausführen, den Code aber ohne Passwort nicht einsehen.</p>
+          <form class="pw-form" data-form="lock">
+            <label>Passwort <input type="password" name="pw-new" id="pw-new" autocomplete="new-password" minlength="4" required /></label>
+            <label>Wiederholen <input type="password" name="pw-repeat" id="pw-repeat" autocomplete="new-password" minlength="4" required /></label>
+            <div class="pw-gen"><button class="btn" type="button" data-pw-generate title="Erzeugt ein Passwort ohne Sonderzeichen (wie simpwortXL)">Passwort erzeugen</button><output class="pw-shown" data-pw-shown></output></div>
+            <fieldset class="opt-modes"><legend>Dateityp</legend>
+              <label class="check"><input type="radio" name="pw-type" value="asm" checked /> HEX + ASM-Datei</label>
+              <label class="check"><input type="radio" name="pw-type" value="c" /> HEX + C-Datei</label>
+              <label class="check"><input type="radio" name="pw-type" value="hex" /> nur HEX</label>
+            </fieldset>
+            <label class="check"><input type="checkbox" name="pw-runonly" id="pw-runonly" checked /> Schüler dürfen ohne Passwort simulieren (Code bleibt verborgen)</label>
+            <button class="btn primary" type="submit">Verschlüsselt speichern</button>
+          </form>
+        </section>
+        <p class="pw-msg" data-pw-msg role="status"></p>
+      </div>
+    </dialog>
+
+    <!-- Übertragung ins Zielsystem -->
+    <dialog class="dlg target-dlg" data-dialog="target" closedby="any">
+      <header><h2>Download ins Zielsystem</h2><button class="x" data-close aria-label="Schließen">✕</button></header>
+      <div class="dlg-body">
+        <p class="muted">Überträgt das Programm als Intel-HEX über eine serielle Schnittstelle (USB-Seriell-Adapter) an den Bootloader eines 8051-Boards. Benötigt einen Browser mit Web-Serial-Unterstützung (Chrome, Edge).</p>
+        <form class="pw-form" data-form="target">
+          <label>Baudrate
+            <select name="baud" id="target-baud">
+              <option>2400</option><option>4800</option><option selected>9600</option><option>19200</option><option>38400</option><option>57600</option><option>115200</option>
+            </select>
+          </label>
+          <div class="target-grid">
+            <label>Datenbits <select name="databits" id="target-databits"><option>7</option><option selected>8</option></select></label>
+            <label>Parität <select name="parity" id="target-parity"><option value="none" selected>Keine</option><option value="even">Gerade</option><option value="odd">Ungerade</option></select></label>
+            <label>Stoppbits <select name="stopbits" id="target-stopbits"><option selected>1</option><option>2</option></select></label>
+            <label>Flusssteuerung <select name="flow" id="target-flow"><option value="none" selected>Kein</option><option value="hardware">Hardware (RTS/CTS)</option></select></label>
+          </div>
+          <label>Startbefehl <input type="text" name="startcmd" id="target-startcmd" placeholder="z. B. Befehl, der den Bootloader in den Programmiermodus versetzt" spellcheck="false" /></label>
+          <label>Pause je Zeile (ms) <input type="number" name="delay" id="target-delay" value="20" min="0" max="1000" /></label>
+          <label class="check"><input type="checkbox" name="echo" id="target-echo" /> Auf Antwort des Bootloaders nach jeder Zeile warten</label>
+          <button class="btn primary" type="submit" data-target-send>Port wählen &amp; übertragen</button>
+        </form>
+        <progress class="target-progress" data-target-progress value="0" max="1"></progress>
+        <pre class="target-log" data-target-log></pre>
+      </div>
+    </dialog>
+
+    <div class="bye-screen" data-bye hidden>
+      <div class="bye-card">
+        <p class="about-logo"><span class="brand-chip">8051</span><span class="brand-name">web<small>XL</small></span></p>
+        <p>Der Simulator wurde beendet. Programm und Einstellungen sind gespeichert.</p>
+        <button class="btn primary" data-action="restart">Neu starten</button>
+      </div>
+    </div>
+    <input type="file" name="file" id="file" data-file accept=".hex,.ihx,.ihex,.hexpw,.asm,.a51,.s,.txt" hidden />
+    <div class="flow-layer" data-flow-layer aria-hidden="true"></div>
+    <div class="toast" data-toast role="alert" hidden></div>
+    <script type="module" src="/src/ui/app.ts"></script>
+  </body>
+</html>

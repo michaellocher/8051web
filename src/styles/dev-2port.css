@@ -1,0 +1,38 @@
+/* 2-Port-Modelle (Handbuch-Gruppe): 16 LEDs, Punktmatrix, Ampel 4, Tongeber/Keyboard, IC-Tester, Speiseaufzug */
+.dev-nofill { fill: none; }
+.l16 { --lit: 0; fill: color-mix(in oklab, #ff1f1f calc(var(--lit) * 100%), #f6f6f6); stroke: #0007; stroke-width: 1; }
+.d2p-board { fill: #2c6b3a; stroke: #123; stroke-width: 1; }
+.d2p-dot { --lit: 0; fill: color-mix(in oklab, #ff2020 calc(var(--lit) * 100%), #8a9198); stroke: #0006; stroke-width: 1; }
+.d2p-dot.on { filter: drop-shadow(0 0 calc(var(--lit) * 4px) #ff2020); }
+.ampel-grass { fill: #3c8a3c; }
+.ton-big { font: 800 15px var(--mono); fill: var(--wire); }
+.kb-key rect { stroke: #222; stroke-width: 1; cursor: pointer; }
+.kb-key.white rect { fill: #fff; }
+.kb-key.black rect { fill: #151515; }
+.kb-key.down rect { fill: #9fc2ff; }
+.kb-key.black.down rect { fill: #3a64b5; }
+.kb-name { font: 800 10px var(--mono); fill: #111; pointer-events: none; }
+.kb-pc { font: 700 9px var(--mono); fill: var(--wire); pointer-events: none; }
+.ict-pin { fill: #c9ced4; stroke: #333; stroke-width: .8; }
+.ict-ic { fill: #b8bdc4; stroke: #222; stroke-width: 1.2; }
+.ict-notch { fill: #222; stroke: none; }
+.ict-gate { fill: #d9dde2; stroke: #555; stroke-width: 1; }
+.ict-gate.bad { fill: #e24a4a; stroke: #7a0d0d; }
+.ict-type { font: 800 11px var(--mono); fill: #1b1b1f; }
+.ict-er { --lit: 0; fill: color-mix(in oklab, #ff2020 calc(var(--lit) * 100%), #6b3a3a); stroke: #0008; stroke-width: 1; }
+.sa-let { font: 800 11px var(--mono); fill: #ff3b30; }
+.sa-floor { fill: #9fa4aa; stroke: #444; stroke-width: 1; }
+.sa-shaft { fill: #fafafa; stroke: #222; stroke-width: 1; }
+.sa-cab { fill: #d7dbe0; stroke: #333; stroke-width: 1.2; }
+.sa-dish { fill: #2a2f8f; stroke: #111; }
+.sa-food { fill: #e040e0; stroke: #111; }
+.sa-open { fill: #080808; }
+.sa-door { fill: #7a0000; stroke: #300; stroke-width: 1; }
+.sa-barrier { stroke: #8a8f96; stroke-width: 1.5; stroke-dasharray: 3 3; }
+.sa-barrier.hit { stroke: #ff2020; stroke-dasharray: none; stroke-width: 2.5; }
+.sa-flag { --lit: 0; fill: color-mix(in oklab, #ff2020 calc(var(--lit) * 100%), #fff); stroke: #222; stroke-width: 1; }
+.sa-flag-txt { font: 800 10px var(--mono); fill: #111; pointer-events: none; }
+.sa-motor { fill: #fff; stroke: #222; stroke-width: 1.2; }
+.sa-motor-txt { font: 800 10px var(--mono); fill: #111; }
+.sa-mot { font: 700 9px var(--mono); fill: var(--wire); opacity: .55; }
+.sa-mot.on { fill: #ff2b2b; opacity: 1; }

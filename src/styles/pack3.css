@@ -1,0 +1,54 @@
+/* Modellpaket 2, Teil 2: zusätzliche Zeichenklassen (feste Farben, unabhängig vom Theme) */
+.p3-floor { fill: #cfd6dc; stroke: #8a949e; }
+.p3-wall { fill: none; stroke: #222; stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
+.p3-pipe { fill: none; stroke: #9fb0bf; stroke-width: 10; stroke-linecap: round; stroke-linejoin: round; }
+.p3-pipe.on { stroke: #4aa3e8; }
+.p3-pipe.dust { stroke: #b0b7bd; }
+.p3-pipe.dust.on { stroke: #a8672a; }
+.p3-water { fill: #4aa3e8; }
+.p3-paint { fill: #e8872a; }
+.p3-grain { fill: #b9651c; stroke: #6b3a10; }
+.p3-grain-lt { fill: #d9a43a; stroke: #7a5a14; }
+.p3-glass { fill: #fff; stroke: #333; stroke-width: 3; }
+.p3-tick { stroke: #333; stroke-width: 1.5; }
+.p3-stream { stroke: #4aa3e8; stroke-width: 6; stroke-dasharray: 8 5; animation: p3-flow .5s linear infinite; }
+.p3-stream.paint { stroke: #e8872a; }
+.p3-stream.grain { stroke: #b9651c; }
+@keyframes p3-flow { to { stroke-dashoffset: -13; } }
+.p3-belt { fill: #e4e8ec; stroke: #333; stroke-width: 2; }
+.p3-belt-stripe { stroke: #d33; stroke-width: 10; stroke-dasharray: 18 9; }
+.p3-roller { fill: #c33; stroke: #411; stroke-width: 2; }
+.p3-roller-x { stroke: #411; stroke-width: 2; }
+.p3-person { fill: #2b3440; }
+.p3-person-head { fill: #f0c9a0; stroke: #2b3440; stroke-width: 2; }
+.p3-msgbox { fill: #fff; stroke: #555; stroke-width: 1.5; }
+.p3-msg { font: 600 11px var(--mono); fill: #b3261e; }
+.p3-msg.ok { fill: #3a7d44; }
+.p3-warn { fill: #fff; stroke: #d22; stroke-width: 3.5; stroke-linejoin: round; }
+.p3-warn-mark { fill: #d22; }
+.p3-note { font: 600 11px var(--ui); fill: #44505a; }
+.p3-plate { fill: #fff; stroke: #222; stroke-width: 2; }
+.p3-metal { fill: #aab3bb; stroke: #4a5058; stroke-width: 2; }
+.p3-metal-dark { fill: #6b737b; stroke: #333; stroke-width: 1.5; }
+.p3-red { fill: #d33; stroke: #611; stroke-width: 1.5; }
+.p3-yellow { fill: #f2c200; stroke: #6b5600; stroke-width: 1.5; }
+.p3-white { fill: #f4f4f4; stroke: #333; stroke-width: 1.5; }
+.p3-wheel { fill: #b9bec5; stroke: #333; stroke-width: 3; }
+.p3-arc { fill: #d02020; stroke: #701010; stroke-width: 2; }
+.p3-sensor { fill: #b8bec6; stroke: #4a5058; stroke-width: 1.5; }
+.p3-sensor.on { fill: #22e06b; stroke: #0a5a28; }
+.p3-glow { fill: #ffcc00; opacity: 0; }
+.p3-glow.on { opacity: 1; }
+.p3-beacon { fill: #8a6a00; stroke: #333; stroke-width: 1.5; }
+.p3-beacon.on { fill: #ff9b1a; filter: drop-shadow(0 0 5px #ff9b1a); }
+.p3-wagon-body { fill: #f2c200; stroke: #6b5600; stroke-width: 2; }
+.p3-wheel-b { fill: #2a4fd6; stroke: #0b1566; stroke-width: 2; }
+.p3-seg-btn { cursor: pointer; }
+.p3-seg-btn rect { fill: #e4e8ec; stroke: #555; stroke-width: 1.5; }
+.p3-seg-btn.sel rect { fill: #3b6fd9; }
+.p3-seg-btn.sel text { fill: #fff; }
+.p3-heater { fill: none; stroke: #2a60e0; stroke-width: 5; stroke-linejoin: round; }
+.p3-heater.on { stroke: #ff3b2a; filter: drop-shadow(0 0 4px #ff3b2a); }
+.p3-stirrer { fill: #6b737b; stroke: #333; stroke-width: 1.5; }
+.p3-dust { fill: #b98a4a; opacity: .55; }
+.p3-step { fill: #cfd5da; stroke: #555; stroke-width: 1; }

@@ -1,0 +1,67 @@
+/* Modellpaket 1 – zusätzliche Zeichenklassen (feste Farben, unabhängig vom Theme) */
+.p1-mot-body { fill: #1f35d0; stroke: #0b1566; }
+.p1-mot-cap { fill: #2a4fd6; stroke: #0b1566; }
+.p1-mot-rib { stroke: #0b1566; stroke-width: 2; opacity: .65; }
+.p1-mot-flange { fill: #3b6bff; }
+.p1-mot-foot { fill: #1b2f80; }
+.p1-shaft { fill: #b8c0c8; stroke: #6b737b; }
+.p1-coupling { fill: #dfe4e8; stroke: #6b737b; }
+.p1-mot-mark { fill: #c0392b; }
+.p1-motor.on .p1-mot-body { fill: #2f55ff; }
+.p1-fan-housing { fill: #2a4fd6; stroke: #0b1566; stroke-width: 2; }
+.p1-fan-inner { fill: #e9eef2; stroke: #0b1566; }
+.p1-fan-blade { fill: #333; }
+.p1-fan-hub { fill: #888; }
+.p1-fan.failed .p1-fan-housing { fill: #8a949e; }
+.p1-fan.on .p1-fan-housing { fill: #2f55ff; }
+.p1-nbox-body { fill: #4fbfb5; stroke: #145a54; stroke-width: 1.5; }
+.p1-nbox-top { fill: #4a5058; stroke: #222; }
+.p1-nbox.on .p1-nbox-body { fill: #6cf2e4; filter: drop-shadow(0 0 3px #3de0cf); }
+.p1-fault { cursor: pointer; }
+.p1-fault-face { fill: #eef0f2; stroke: #6b737b; }
+.p1-bolt { fill: #e0a800; stroke: #8a6800; stroke-width: .8; }
+.p1-fault.on .p1-fault-face { fill: #ffd2d2; stroke: #c0392b; }
+.p1-fault.on .p1-bolt { fill: #e03131; stroke: #7a1010; }
+.p1-bow-pipe { fill: #b0b7bd; stroke: #6b737b; }
+.p1-bow-tri { fill: #d33; stroke: #611; stroke-width: 1.5; }
+.p1-bow.open .p1-bow-tri { fill: #2fae4f; stroke: #14501f; }
+.p1-bow.open .p1-bow-pipe { fill: #3b8fd9; stroke: #1c4d85; }
+.p1-beam { stroke: #c9a400; stroke-width: 2; }
+.p1-beam.cut { stroke: #ff3b3b; stroke-dasharray: 3 3; }
+.p1-sens-s { fill: #3a9a4a; stroke: #1c4a22; }
+.p1-sens-r { fill: #f2c200; stroke: #6b5600; }
+.p1-bin { fill: #fff8; stroke: #333; stroke-width: 2; }
+.p1-box-small { fill: #2fae4f; stroke: #14501f; }
+.p1-box-medium { fill: #d93636; stroke: #701010; }
+.p1-box-large { fill: #2a4fd6; stroke: #0b1566; }
+.p1-sidebelt { fill: #444; stroke: #222; }
+.p1-gen { fill: #c0392b; stroke: #5a150f; stroke-width: 2; }
+.p1-gen-rib { stroke: #5a150f; stroke-width: 3; }
+.p1-wire { fill: none; stroke: #111; stroke-width: 1.8; }
+.p1-green-btn { fill: #2fae4f; stroke: #14501f; stroke-width: 1.5; }
+.p1-rocker { cursor: pointer; }
+.p1-rocker-body { fill: #ece8d2; stroke: #555; stroke-width: 1.5; }
+.p1-rocker-half { fill: #f7f4e4; stroke: #888; }
+.p1-rocker.up .p1-rocker-up, .p1-rocker:not(.up) .p1-rocker-dn { fill: #b8b39a; }
+.p1-teal { fill: #4fbfb5; stroke: #145a54; stroke-width: 2; }
+.p1-road { fill: #9a9ea3; }
+.p1-road-line { stroke: #fff; stroke-width: 5; }
+.p1-pillar { fill: #bfc4c9; stroke: #6b737b; }
+.p1-pillar-side { fill: #8b9096; }
+.p1-light-box { fill: #333; stroke: #111; }
+.p1-silo { fill: #fff; stroke: #333; stroke-width: 3; }
+.p1-stream { fill: #3b8fd9; }
+.p1-belt-top { fill: #fff; stroke: #333; stroke-width: 2; }
+.p1-belt-run { fill: none; stroke: #d00; stroke-width: 10; stroke-dasharray: 14 6; }
+.p1-item { fill: #7b3b32; stroke: #3a1511; }
+.p1-hopper { fill: #7b3b32; stroke: #3a1511; stroke-width: 2; }
+.p1-roll { fill: #b33; stroke: #411; stroke-width: 2; }
+.p1-room { fill: #f3e9c8; stroke: #222; stroke-width: 3; }
+.p1-bed { fill: #fff; stroke: #666; stroke-width: 2; }
+.p1-badge { fill: #f2c200; stroke: #222; stroke-width: 1.5; }
+.p1-door { fill: none; stroke: #222; stroke-width: 2; }
+.p1-sound { fill: none; stroke: #e0a800; stroke-width: 3; stroke-linecap: round; opacity: 0; }
+.p1-sound.on { opacity: 1; }
+.p1-horn { fill: #2a4fd6; stroke: #0b1566; }
+.p1-tank-fill { stroke: none; }
+.p1-outline { fill: none; stroke: #333; stroke-width: 3; }
